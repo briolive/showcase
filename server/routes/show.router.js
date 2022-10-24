@@ -10,7 +10,9 @@ router.get('/', (req, res) => {
   console.log('is authenticated?', req.isAuthenticated());
   console.log('user id', req.user.id);
   if(req.isAuthenticated()) {
-    let queryText = `SELECT * FROM "show" WHERE "user_id" = $1`;
+    let queryText = `SELECT * FROM "show" 
+                      WHERE "user_id" = $1
+                      ORDER BY "date" DESC`;
     pool.query(queryText, [req.user.id]).then((result) => {
       res.send(result.rows);
     }).catch((error) => {

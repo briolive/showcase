@@ -32,7 +32,18 @@ function UserPage() {
 
     <div>
       <ul>
-        <li>Hello</li>
+        {
+          showList.length === 0 && (
+            <div>No shows have been added.</div>
+          )
+        }
+        {
+          showList.map(show => {
+            return <li key={show.id}>
+                    {show.date} {show.artist} at {show.venue}
+                  </li>
+          })
+        }
       </ul>
     </div>
     </>
