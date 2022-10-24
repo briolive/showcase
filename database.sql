@@ -11,7 +11,7 @@ CREATE TABLE "user" (
 	"firstname" varchar(50) NOT NULL
 );
 
-CREATE TABLE "shows" (
+CREATE TABLE "show" (
 	"id" SERIAL PRIMARY KEY NOT NULL,
 	"artist" varchar(250) NOT NULL,
 	"support" varchar(250) NOT NULL,
