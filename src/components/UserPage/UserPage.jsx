@@ -25,12 +25,15 @@ function UserPage() {
   return (
     <>
     <div className="container">
+      <center>
       <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+      {/* <p>Your ID is: {user.id}</p>
+      <LogOutButton className="btn" /> */}
+      <button>Add Show</button>
+      </center>
     </div>
 
-    <div>
+    <div className="content">
       <ul>
         {
           showList.length === 0 && (
