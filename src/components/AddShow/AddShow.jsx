@@ -12,7 +12,7 @@ function TemplateFunction(props) {
 
   return (
     <div>
-      <h2>{heading}</h2>
+      <h2>Hello World!</h2>
     </div>
   );
 }
