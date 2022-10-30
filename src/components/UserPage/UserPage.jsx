@@ -1,30 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
 import axios from 'axios';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-  const [showList, setShowList] = useState([]);
-
-  // history
+  const dispatch = useDispatch();
   const history = useHistory();
+  const shows = useSelector((store) => store.shows);
 
   useEffect(() => {
-    fetchShows();
+    console.log('page load.');
+    dispatch({ type: 'FETCH_SHOWS' });
+    console.log('user:', user);
   }, []);
 
-  const fetchShows = () => {
-    console.log('in fetchShows');
-    axios.get('/api/show').then((response) => {
-      setShowList(response.data);
-    }).catch((error) => {
-      console.log('error in fetchShows', error);
-      alert('Something went wrong.');
-    });
-  } // end fetchShows
+  // const fetchShows = () => {
+  //   console.log('in fetchShows');
+  //   axios.get('/api/show').then((response) => {
+  //     setShowList(response.data);
+  //   }).catch((error) => {
+  //     console.log('error in fetchShows', error);
+  //     alert('Something went wrong.');
+  //   });
+  // } // end fetchShows
 
   return (
     <>
@@ -39,18 +40,19 @@ function UserPage() {
 
     <div className="content">
       <ul>
-        {
-          showList.length === 0 && (
+        {/* {
+          shows.length === 0 && (
             <div>No shows have been added.</div>
           )
         }
         {
-          showList.map(show => {
-            return <li key={show.id}>
+          shows.map(show => {
+            return ( <li key={show.id}>
                     {show.date} {show.artist} at {show.venue}
                   </li>
+            );
           })
-        }
+        } */}
       </ul>
     </div>
     </>

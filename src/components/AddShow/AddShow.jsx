@@ -19,6 +19,7 @@ function AddShow() {
     </div>
 
     <div>
+      <center>
       Artist:
       <br />
       <input type="text">
@@ -50,7 +51,8 @@ function AddShow() {
 
       <br />
       <input type="submit">
-        </input>      
+        </input>    
+        </center>  
     </div>
     </>
   );
