@@ -19,13 +19,14 @@ function UserPage() {
 
   const fetchShows = () => {
     console.log('in fetchShows');
-    axios.get('/api/show').then((response) => {
-      console.log('get response:', response.data);
-      dispatch({ type: 'SET_SHOWS', payload: response.data })
-    }).catch((error) => {
-      console.log('error in fetchShows', error);
-      alert('Something went wrong.');
-    });
+    dispatch({ type: 'FETCH_SHOWS' });
+    // axios.get('/api/show').then((response) => {
+    //   console.log('get response:', response.data);
+    //   dispatch({ type: 'SET_SHOWS', payload: response.data })
+    // }).catch((error) => {
+    //   console.log('error in fetchShows', error);
+    //   alert('Something went wrong.');
+    // });
   } // end fetchShows
 
   return (
