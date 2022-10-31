@@ -29,6 +29,22 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
+  console.log('/api/show POST route');
+  console.log(req.body);
+  console.log('is authenticated?', req.isAuthenticated());
+  console.log('user', req.user);
+  if (req.isAuthenticated()) {
+    const queryText = `INSERT INTO "shows"
+                        ("artist", "support", "venue", "date", "notes", "user_id")
+                        VALUES ($1, $2, $3, $4, $5, $6)`;
+  pool.query(queryText, [req.body.artist, req.body.support, req.body.venue, req.body.date, req.body.notes, req.user.id]).then(() => {
+    res.sendStatus(201);
+  }).catch((e) => {
+    res.sendStatus(500);
+  })
+  } else {
+    res.sendStatus(403); // Forbidden
+  }
 });
 
 module.exports = router;
