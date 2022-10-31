@@ -14,53 +14,41 @@ import store from './redux/store';
 import App from './components/App/App';
 
 
-// create the rootSaga generator function (watcher saga)
-function* rootSaga() {
-  yield takeEvery('FETCH_SHOWS', fetchShows);
-}
+// // create the rootSaga generator function (watcher saga)
+// function* rootSaga() {
+//   yield takeEvery('FETCH_SHOWS', fetchShows);
+// }
 
-function* fetchShows() {
-  // get all shows from the database
-  console.log('in fetchShows');
-  try {
-    const shows = yield axios.get('/api/show');
-    console.log('get all:', shows.data);
-    yield put({ type: 'SET_SHOWS', payload: shows.data });
-  } catch (error) {
-    console.log('error in fetchShows', error);
-  }
-}
+// function* fetchShows() {
+//   // get all shows from the database
+//   console.log('in fetchShows');
+//   try {
+//     const shows = yield axios.get('/api/show');
+//     console.log('get all:', shows.data);
+//     yield put({ type: 'SET_SHOWS', payload: shows.data });
+//   } catch (error) {
+//     console.log('error in fetchShows', error);
+//   }
+// }
 
-function* fetchShowDetails(action) {}
-
-
-// Create sagaMiddleware
-const sagaMiddleware = createSagaMiddleware();
+// function* fetchShowDetails(action) {}
 
 
-// Used to store shows returned from the server
-const shows = (state = [], action) => {
-  switch (action.type) {
-    case 'SET_SHOWS':
-      console.log('in shows', action.payload);
-      return action.payload;
-    default:
-      return state;
-  }
-}
+// // Create sagaMiddleware
+// const sagaMiddleware = createSagaMiddleware();
 
 
-// Create one store that all components can use
-const storeInstance = createStore(
-  combineReducers({
-      shows,
-  }),
-  // Add sagaMiddleware to our store
-  applyMiddleware(sagaMiddleware, logger),
-);
+// // Create one store that all components can use
+// const storeInstance = createStore(
+//   combineReducers({
+//       shows, 
+//   }),
+//   // Add sagaMiddleware to our store
+//   applyMiddleware(sagaMiddleware, logger),
+// );
 
-// Pass rootSaga into our sagaMiddleware
-sagaMiddleware.run(rootSaga);
+// // Pass rootSaga into our sagaMiddleware
+// sagaMiddleware.run(rootSaga);
 
 
 ReactDOM.render(

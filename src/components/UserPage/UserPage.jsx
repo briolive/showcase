@@ -13,19 +13,20 @@ function UserPage() {
 
   useEffect(() => {
     console.log('page load.');
-    dispatch({ type: 'FETCH_SHOWS' });
+    fetchShows();
     console.log('user:', user);
   }, []);
 
-  // const fetchShows = () => {
-  //   console.log('in fetchShows');
-  //   axios.get('/api/show').then((response) => {
-  //     setShowList(response.data);
-  //   }).catch((error) => {
-  //     console.log('error in fetchShows', error);
-  //     alert('Something went wrong.');
-  //   });
-  // } // end fetchShows
+  const fetchShows = () => {
+    console.log('in fetchShows');
+    axios.get('/api/show').then((response) => {
+      console.log('get response:', response.data);
+      dispatch({ type: 'SET_SHOWS', payload: response.data })
+    }).catch((error) => {
+      console.log('error in fetchShows', error);
+      alert('Something went wrong.');
+    });
+  } // end fetchShows
 
   return (
     <>
@@ -40,7 +41,7 @@ function UserPage() {
 
     <div className="content">
       <ul>
-        {/* {
+        {
           shows.length === 0 && (
             <div>No shows have been added.</div>
           )
@@ -52,7 +53,7 @@ function UserPage() {
                   </li>
             );
           })
-        } */}
+        }
       </ul>
     </div>
     </>
