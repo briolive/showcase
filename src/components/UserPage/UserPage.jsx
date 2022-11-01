@@ -29,6 +29,12 @@ function UserPage() {
     // });
   } // end fetchShows
 
+
+  const displayShow = (showToDisplay) => {
+    console.log('selected show:', showToDisplay);
+    dispatch({ type: 'SET_SHOW_DETAILS', payload: showToDisplay });
+  }
+
   return (
     <>
     <div className="container">
@@ -48,8 +54,10 @@ function UserPage() {
           )
         }
         {
+          // Shows is an array
           shows.map(show => {
-            return ( <li key={show.id}>
+            // For each show (object) in the array, display it on the DOM
+            return ( <li key={show.id} onClick={() => displayShow(show)}>
                     {show.date} {show.artist} at {show.venue}
                   </li>
             );

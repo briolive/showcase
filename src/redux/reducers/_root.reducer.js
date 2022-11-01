@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 // Step 2: Import the reducer
 import shows from './show.reducer';
+import selectedShow from './selectedShow.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   // Step 3: New reducers go here
   shows,
+  selectedShow,
 });
 
 export default rootReducer;
