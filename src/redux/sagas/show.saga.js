@@ -12,6 +12,15 @@ function* fetchShows() {
     }
 }
 
+function* fetchShowDetails(action) {
+    try {
+        const show = yield axios.get(`/api/show/${action.payload}`);
+        yield put({ type: 'SET_SHOW_DETAILS', payload: show.data });
+    } catch (error) {
+        console.log('error in fetchShowDetails', error);
+    }
+}
+
 // CREATE
 function* addShow() {
 
@@ -20,6 +29,7 @@ function* addShow() {
 function* showSaga() {
     yield takeLatest('FETCH_SHOWS', fetchShows);
     yield takeLatest('ADD_SHOW', addShow);
+    yield takeLatest('FETCH_SHOW_DETAILS', fetchShowDetails);
 }
 
 export default showSaga;

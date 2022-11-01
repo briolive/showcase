@@ -33,6 +33,7 @@ function UserPage() {
   const displayShow = (showToDisplay) => {
     console.log('selected show:', showToDisplay);
     dispatch({ type: 'SET_SHOW_DETAILS', payload: showToDisplay });
+    history.push(`/detail/${showToDisplay.id}`);
   }
 
   return (
