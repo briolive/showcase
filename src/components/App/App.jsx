@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 // My imports
 import AddShow from '../AddShow/AddShow';
+import ShowDetail from '../ShowDetail/ShowDetail';
 
 import './App.css';
 
@@ -118,6 +119,12 @@ function App() {
             path="/addshow"
           >
             <AddShow />            
+          </ProtectedRoute>
+
+          <ProtectedRoute 
+            exact path="/detail/:showId"
+          >
+            <ShowDetail />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}

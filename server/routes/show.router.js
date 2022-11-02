@@ -24,6 +24,20 @@ router.get('/', (req, res) => {
   }
 });
 
+router.get('/:id', (req, res) => {
+    let queryText = `SELECT * FROM "shows" 
+                      WHERE "id" = $1`;
+    pool.query(queryText, [req.params.id])
+      .then((result) => {
+        // Return the first item in the array (object)
+        res.send(result.rows[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+    });
+});
+
 /**
  * POST route template
  */
