@@ -30,6 +30,10 @@ function ShowDetail() {
       <p>Notes:
       <br />{show.notes}</p>
     </div>
+    <div>
+      <button>Edit</button>
+      <button>Delete</button>
+    </div>
     </>
   );
 }
