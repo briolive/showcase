@@ -27,6 +27,11 @@ function ShowDetail() {
     })
   }
 
+  const formatDates = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" }
+    return new Date(dateString).toLocaleDateString(undefined, options)
+}
+
   return (
     <>
     <div>
@@ -40,7 +45,7 @@ function ShowDetail() {
       <p>Headliner: {show.artist}
       <br />Supporting artist(s): {show.support}</p>
       <p>Venue: {show.venue}
-      <br />Date: {show.date}</p>
+      <br />Date: {formatDates(show.date)}</p>
       <p>Notes:
       <br />{show.notes}</p>
     </div>

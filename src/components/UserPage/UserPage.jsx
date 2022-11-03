@@ -36,6 +36,11 @@ function UserPage() {
     history.push(`/detail/${showToDisplay.id}`);
   }
 
+  const formatDates = (dateString) => {
+    const options = { year: "2-digit", month: "numeric", day: "numeric" }
+    return new Date(dateString).toLocaleDateString(undefined, options)
+}
+
   return (
     <>
     <div className="container">
@@ -59,7 +64,7 @@ function UserPage() {
           shows.map(show => {
             // For each show (object) in the array, display it on the DOM
             return ( <li key={show.id} onClick={() => displayShow(show)}>
-                    {show.date} {show.artist} at {show.venue}
+                    {formatDates(show.date)} {show.artist} at {show.venue}
                   </li>
             );
           })
