@@ -1,17 +1,31 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 function ShowDetail() {
   const store = useSelector((store) => store);
   const show = useSelector(store => store.selectedShow);
   const { showId } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch({ type: 'FETCH_SHOW_DETAILS', payload: showId });
   }, [showId])
+
+  const deleteShow = (showToDelete) => {
+    console.log('in deleteShow', showToDelete);
+    axios.delete(`/api/show/${showToDelete.id}`)
+    .then((response) => {
+      console.log('delete response:', response.data);
+      history.push('/user');      
+    }).catch((error) => {
+      console.log('error in deleteShow:', error);
+      alert('Something went wrong.');
+    })
+  }
 
   return (
     <>
@@ -32,7 +46,7 @@ function ShowDetail() {
     </div>
     <div>
       <button>Edit</button>
-      <button>Delete</button>
+      <button onClick={() => deleteShow(show)}>Delete</button>
     </div>
     </>
   );

@@ -61,4 +61,18 @@ router.post('/', (req, res) => {
   }
 });
 
+/**
+ * DELETE route
+ */
+router.delete('/:id', (req, res) => {
+  if(req.isAuthenticated()) {
+      // The user is logged in
+      const queryText = `DELETE FROM "shows" WHERE "id" = $1 AND "user_id" = $2`;
+      pool.query(queryText, [req.params.id, req.user.id])
+  } else {
+      res.sendStatus(403);
+  }
+});
+
+
 module.exports = router;
