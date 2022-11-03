@@ -69,6 +69,12 @@ router.delete('/:id', (req, res) => {
       // The user is logged in
       const queryText = `DELETE FROM "shows" WHERE "id" = $1 AND "user_id" = $2`;
       pool.query(queryText, [req.params.id, req.user.id])
+        .then(results => {
+          res.sendStatus(200);
+        }).catch(error => {
+          console.log(error);
+          res.sendStatus(500);
+        })
   } else {
       res.sendStatus(403);
   }
