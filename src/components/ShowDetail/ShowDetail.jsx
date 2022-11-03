@@ -57,6 +57,9 @@ function ShowDetail() {
       <button onClick={() => editShow(show)}>Edit</button>
       <button onClick={() => deleteShow(show)}>Delete</button>
     </div>
+    <br />
+    <br />
+    <Link to={`/edit/${show.id}`}>Edit</Link>
     </>
   );
 }
