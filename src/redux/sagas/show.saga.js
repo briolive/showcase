@@ -26,10 +26,23 @@ function* addShow() {
 
 }
 
+// UPDATE
+function* editShow(action) {
+    try {
+        yield axios.put(`/api/show/${action.payload.id}`, action.payload);
+        if (action.history) {
+            action.history.goBack();
+        }
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 function* showSaga() {
     yield takeLatest('FETCH_SHOWS', fetchShows);
     yield takeLatest('ADD_SHOW', addShow);
     yield takeLatest('FETCH_SHOW_DETAILS', fetchShowDetails);
+    yield takeLatest('EDIT_SHOW', editShow);
 }
 
 export default showSaga;
