@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route template
+ * GET route
  */
 router.get('/', (req, res) => {
   console.log('is authenticated?', req.isAuthenticated());
@@ -39,7 +39,7 @@ router.get('/:id', (req, res) => {
 });
 
 /**
- * POST route template
+ * POST route
  */
 router.post('/', (req, res) => {
   // POST route code here
@@ -57,8 +57,49 @@ router.post('/', (req, res) => {
     res.sendStatus(500);
   })
   } else {
-    res.sendStatus(403); // Forbidden
+    res.sendStatus(403); // forbidden
   }
 });
+
+/**
+ * PUT route
+ */
+router.put('/:id', (req, res) => {
+  if(req.isAuthenticated()) {
+    // user is logged in
+    const queryText = `UPDATE "shows" 
+                        SET "artist" = $1, "support" = $2, "venue" = $3, "date" = $4, "notes" = $5
+                        WHERE "id" = $6 AND "user_id" = $7;`
+    pool.query(queryText, [req.body.artist, req.body.support, req.body.venue, req.body.date, req.body.notes, req.params.id, req.user.id])
+      .then(results => {
+        res.sendStatus(200);
+      }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+      })
+  } else {
+    res.sendStatus(403); // forbidden
+  }
+})
+
+/**
+ * DELETE route
+ */
+router.delete('/:id', (req, res) => {
+  if(req.isAuthenticated()) {
+      // The user is logged in
+      const queryText = `DELETE FROM "shows" WHERE "id" = $1 AND "user_id" = $2`;
+      pool.query(queryText, [req.params.id, req.user.id])
+        .then(results => {
+          res.sendStatus(200);
+        }).catch(error => {
+          console.log(error);
+          res.sendStatus(500);
+        })
+  } else {
+      res.sendStatus(403); // forbidden
+  }
+});
+
 
 module.exports = router;

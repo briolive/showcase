@@ -121,6 +121,10 @@ function App() {
             <AddShow />            
           </ProtectedRoute>
 
+          <ProtectedRoute exact path="/edit/:id">
+            <AddShow />
+          </ProtectedRoute>
+
           <ProtectedRoute 
             exact path="/detail/:showId"
           >

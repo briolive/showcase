@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 function AddShow() {
   const store = useSelector((store) => store);
@@ -11,10 +11,36 @@ function AddShow() {
   const [venue, setVenue] = useState('');
   const [date, setDate] = useState('');
   const [notes, setNotes] = useState('');
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
-  const addShow = (e) => {
-    console.log('in addShow');
+  useEffect(() => {
+    if (id) { // Return false if id is undefined
+      axios.get(`/api/show/${id}`)
+      .then(response => {
+        const show = response.data;
+        setArtist(show.artist);
+        setSupport(show.support);
+        setVenue(show.venue);
+        setDate(show.date);
+        setNotes(show.notes);
+      }).catch(error => {
+        console.log(error);
+        alert('Something went wrong!');
+      })
+    } // else do nothing
+  }, [id]);
+
+  const submitForm = (e) => {
     e.preventDefault();
+    if (id) {
+      // edit movie
+      console.log('in submitForm, editing show');
+      dispatch({ type: 'EDIT_SHOW', payload: { artist, support, venue, date, notes, id }, history });
+    } else {
+      // add movie
+    console.log('in submitForm, adding show');
+    // dispatch({ type: 'ADD_SHOW', payload: { artist, support, venue, date, notes }, history });
     axios.post('api/show', {
       artist: artist,
       support: support,
@@ -26,20 +52,20 @@ function AddShow() {
     }).catch((error) => {
       console.log('error in addShow:', error);
       alert('Something went wrong.');
-    })
+    })}
   }
 
   return (
     <>
     <div>
       <center>
-      <h2>Add New Show</h2>
+      <h2>{id ? 'Edit Show' : 'Add New Show' }</h2>
       </center>
     </div>
 
     <div>
       <center>
-      <form onSubmit={addShow}>
+      <form onSubmit={submitForm}>
 
       Artist:
       <br />
