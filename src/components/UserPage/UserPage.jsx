@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import axios from 'axios';
 
@@ -20,13 +20,6 @@ function UserPage() {
   const fetchShows = () => {
     console.log('in fetchShows');
     dispatch({ type: 'FETCH_SHOWS' });
-    // axios.get('/api/show').then((response) => {
-    //   console.log('get response:', response.data);
-    //   dispatch({ type: 'SET_SHOWS', payload: response.data })
-    // }).catch((error) => {
-    //   console.log('error in fetchShows', error);
-    //   alert('Something went wrong.');
-    // });
   } // end fetchShows
 
 
@@ -43,12 +36,15 @@ function UserPage() {
 
   return (
     <>
-    <div className="container">
+    {/* <div className="container"> */}
+    <div>
       <center>
       <h2>Welcome, {user.username}!</h2>
       {/* <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" /> */}
       <button onClick={() => history.push('/addshow')}>Add Show</button>
+      {/* <br />
+      <Link to='/addshow'>Add Show</Link> */}
       </center>
     </div>
 
