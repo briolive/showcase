@@ -109,7 +109,8 @@ function AddShow() {
       
 
       <br />
-      <input type="submit" />  
+      <input type="submit" />
+      {/* <button onClick={() => history.push('/user')}>Home</button>   */}
       
       </form>
       </center>  

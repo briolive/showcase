@@ -57,9 +57,10 @@ function ShowDetail() {
     </div>
     <div>
       <center>
-      <button onClick={() => goHome()}>Home</button>
+
       <button onClick={() => editShow(show)}>Edit</button>
       <button onClick={() => deleteShow(show)}>Delete</button>
+      <br />
 
     {/* <Link to={`/edit/${show.id}`}>Edit</Link> */}
 
