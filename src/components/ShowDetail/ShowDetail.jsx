@@ -29,37 +29,43 @@ function ShowDetail() {
 
   const editShow = (showToEdit) => {
     console.log('in editShow', showToEdit);
+    history.push(`/edit/${showToEdit.id}`);
   }
 
   const formatDates = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" }
     return new Date(dateString).toLocaleDateString(undefined, options)
-}
+  }
+
+  const goHome = () => {
+    console.log('in goHome');
+    history.push('/user');
+  }
 
   return (
     <>
     <div>
       <center>
-        <h1>{showId}</h1>
       <h2>{show.artist}</h2>
-      </center>
-    </div>
-
-    <div>
-      <p>Headliner: {show.artist}
-      <br />Supporting artist(s): {show.support}</p>
-      <p>Venue: {show.venue}
-      <br />Date: {formatDates(show.date)}</p>
+      <p>Supporting artist(s):
+        <br />{show.support}</p>
+      <p>{show.venue}
+      <br />{formatDates(show.date)}</p>
       <p>Notes:
       <br />{show.notes}</p>
+      </center>
     </div>
     <div>
+      <center>
+
       <button onClick={() => editShow(show)}>Edit</button>
       <button onClick={() => deleteShow(show)}>Delete</button>
+      <br />
+
+    {/* <Link to={`/edit/${show.id}`}>Edit</Link> */}
+
+    </center>
     </div>
-    <br />
-    <br />
-    <Link to={`/edit/${show.id}`}>Edit</Link>
     </>
   );
 }

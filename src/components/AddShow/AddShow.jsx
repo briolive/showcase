@@ -106,9 +106,11 @@ function AddShow() {
         type="text"
         value={notes}
         onChange={(e) => setNotes(e.target.value)} />
+      
 
       <br />
-      <input type="submit" />  
+      <input type="submit" />
+      {/* <button onClick={() => history.push('/user')}>Home</button>   */}
       
       </form>
       </center>  

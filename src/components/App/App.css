@@ -5,9 +5,11 @@ body,
 }
 
 body {
-  font-family: 'Kanit', 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', 'Kanit', 'Segoe UI', Tahoma, Verdana, sans-serif;
+  color: black;
   margin: 0px;
   background-color: white;
+  background-size: 100%;
 }
 
 img {
