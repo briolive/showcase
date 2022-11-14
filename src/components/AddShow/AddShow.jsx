@@ -102,10 +102,9 @@ function AddShow() {
       <br />
       What would you like to remember about this show?
       <br />
-      <input 
-        type="text"
+      <textarea
         value={notes}
-        onChange={(e) => setNotes(e.target.value)} />
+        onChange={(e) => setNotes(e.target.value)}></textarea>
       
 
       <br />
