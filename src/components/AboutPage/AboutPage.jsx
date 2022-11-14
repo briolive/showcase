@@ -15,9 +15,9 @@ function AboutPage() {
           <li>Redux</li>
           <li>Sagas</li>
         </ul>
-        <h3>Next Steps</h3>
+        <h3>Looking Ahead</h3>
         <p>I'd like to add statistics and a map function to display the different venues each user has been to for previous concerts.</p>
-        <h3>Thanks</h3>
+        <h3>Thanks!</h3>
         <p>Thanks to my partner Emma, my friends and family, and Prime. Thanks also to my instructor Chris, my study group, and everyone in the Phrygian cohort!</p> 
     </div>
   );
